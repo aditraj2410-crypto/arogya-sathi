@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient AI Case-Taking App</title>
+<link rel="stylesheet" href="src/patient.css">
+</head>
+<body>
+
+  <!-- Mobile Phone Mockup Frame -->
+  <div class="phone-wrapper">
+    <div class="phone-frame">
+      <div class="dynamic-island"></div>
+
+      <div class="app-screen">
+        <!-- Hero Header -->
+        <header class="hero-header">
+          <div class="play-icon">▶</div>
+          <h1>Patient AI<br>Case-Taking</h1>
+          <p>Your health, understood clearly</p>
+        </header>
+
+        <!-- Main Form Container -->
+        <main class="app-body">
+
+          <!-- Language Selector Section -->
+          <section class="card-section">
+            <span class="section-label">CHOOSE LANGUAGE</span>
+            <div class="language-grid" id="langGrid">
+              <button class="lang-card active" onclick="selectLanguage(this, 'English')">
+                <div class="lang-code">GB</div>
+                <div class="lang-names">
+                  <span class="l-main">English</span>
+                  <span class="l-sub">English</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button class="lang-card" onclick="selectLanguage(this, 'Hindi')">
+                <div class="lang-code">IN</div>
+                <div class="lang-names">
+                  <span class="l-main">Hindi</span>
+                  <span class="l-sub">हिंदी</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button class="lang-card" onclick="selectLanguage(this, 'Tamil')">
+                <div class="lang-code">IN</div>
+                <div class="lang-names">
+                  <span class="l-main">Tamil</span>
+                  <span class="l-sub">தமிழ்</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button class="lang-card" onclick="selectLanguage(this, 'Telugu')">
+                <div class="lang-code">IN</div>
+                <div class="lang-names">
+                  <span class="l-main">Telugu</span>
+                  <span class="l-sub">తెలుగు</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button class="lang-card" onclick="selectLanguage(this, 'Bengali')">
+                <div class="lang-code">IN</div>
+                <div class="lang-names">
+                  <span class="l-main">Bengali</span>
+                  <span class="l-sub">বাংলা</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+
+              <button class="lang-card" onclick="selectLanguage(this, 'Marathi')">
+                <div class="lang-code">IN</div>
+                <div class="lang-names">
+                  <span class="l-main">Marathi</span>
+                  <span class="l-sub">मराठी</span>
+                </div>
+                <span class="check-icon">✓</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Interaction Mode Section -->
+          <section class="card-section">
+            <span class="section-label">INTERACTION MODE</span>
+            <div class="mode-grid">
+              <button class="mode-card active" id="modeVoice" onclick="selectMode('voice')">
+                <div class="mode-icon">🎙</div>
+                <span class="mode-title">Voice</span>
+                <span class="mode-sub">Speak your symptoms</span>
+              </button>
+
+              <button class="mode-card" id="modeText" onclick="selectMode('text')">
+                <div class="mode-icon">⌨</div>
+                <span class="mode-title">Text</span>
+                <span class="mode-sub">Type your symptoms</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Dynamic Action Area -->
+          <section class="card-section dynamic-action" id="actionArea">
+            <button class="start-btn" onclick="startCaseTaking()">Start Consultation</button>
+          </section>
+
+          <!-- Privacy Note -->
+          <footer class="privacy-note">
+            <span class="lock-icon">🔒</span>
+            <p>Your data is encrypted and shared only with your assigned doctor. Nothing is stored without your consent.</p>
+          </footer>
+
+        </main>
+      </div>
+
+      <div class="home-indicator"></div>
+    </div>
+  </div>
+<!-- Add this line right ABOVE patient.js -->
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="patient.js"></script>
+  <script src="patient.js"></script>
+</body>
+</html>

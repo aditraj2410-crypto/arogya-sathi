@@ -1,0 +1,282 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #121214;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Smartphone Device Mockup Frame */
+.phone-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-frame {
+  width: 380px;
+  height: 780px;
+  background: #000;
+  border-radius: 48px;
+  padding: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 12px #2d2d30;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.dynamic-island {
+  width: 110px;
+  height: 28px;
+  background: #000;
+  border-radius: 20px;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.home-indicator {
+  width: 130px;
+  height: 4px;
+  background: #ffffff;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  opacity: 0.6;
+}
+
+/* App Inner Screen */
+.app-screen {
+  flex: 1;
+  background-color: #f4f6f9;
+  border-radius: 38px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.app-screen::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hero Section */
+.hero-header {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  color: white;
+  padding: 50px 24px 30px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.play-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.hero-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.hero-header p {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* App Body & Cards */
+.app-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0284c7;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Language Selection Grid */
+.language-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.lang-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.lang-card.active {
+  background: #f0f9ff;
+  border-color: #0284c7;
+}
+
+.lang-code {
+  font-size: 9px;
+  font-weight: 700;
+  background: #e2e8f0;
+  color: #475569;
+  padding: 3px 5px;
+  border-radius: 4px;
+}
+
+.lang-card.active .lang-code {
+  background: #0284c7;
+  color: white;
+}
+
+.lang-names {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-main {
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.l-sub {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.check-icon {
+  font-size: 12px;
+  color: #0284c7;
+  display: none;
+  font-weight: bold;
+}
+
+.lang-card.active .check-icon {
+  display: block;
+}
+
+/* Interaction Mode Grid */
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mode-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-card.active {
+  background: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+.mode-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: #64748b;
+}
+
+.mode-card.active .mode-icon {
+  color: #0284c7;
+}
+
+.mode-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.mode-sub {
+  font-size: 10px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Action Button & Privacy Footer */
+.start-btn {
+  width: 100%;
+  padding: 14px;
+  background: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  transition: background 0.2s;
+}
+
+.start-btn:hover {
+  background: #0369a1;
+}
+
+.privacy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #fffbe0;
+  border: 1px solid #fef08a;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 10px;
+  color: #854d0e;
+  line-height: 1.4;
+}
+
+.lock-icon {
+  font-size: 12px;
+}

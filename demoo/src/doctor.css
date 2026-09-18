@@ -1,0 +1,256 @@
+:root {
+  --bg-dark: #1e293b;
+  --bg-darker: #0f172a;
+  --bg-sidebar: #1e293b;
+  --bg-banner: #2b3e55;
+  --bg-main: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --primary-blue: #3b82f6;
+  --urgent-red: #ef4444;
+  --moderate-orange: #f59e0b;
+  --low-green: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-darker);
+  color: var(--text-main);
+}
+
+.emr-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 1. Left Sidebar */
+.sidebar {
+  width: 220px;
+  background: var(--bg-sidebar);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo-icon {
+  background: var(--primary-blue);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-title { font-size: 0.95rem; font-weight: 600; display: block; }
+.brand-version { font-size: 0.7rem; color: #94a3b8; }
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #475569;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.user-info h4 { font-size: 0.85rem; font-weight: 600; }
+.user-info p { font-size: 0.7rem; color: #94a3b8; }
+
+.menu-label { font-size: 0.65rem; color: #64748b; font-weight: 700; margin-bottom: 0.5rem; display: block; }
+
+.nav-menu { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-radius: 6px;
+}
+
+.nav-item.active, .nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.badge.red {
+  margin-left: auto;
+  background: var(--urgent-red);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.sidebar-footer { font-size: 0.7rem; color: #64748b; padding-top: 1rem; }
+
+/* 2. Queue Panel */
+.queue-panel {
+  width: 280px;
+  background: #fff;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.queue-header { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+.breadcrumb { font-size: 0.7rem; color: var(--text-muted); }
+.queue-title-row { display: flex; justify-content: space-between; align-items: baseline; margin: 0.4rem 0; }
+.queue-title-row h2 { font-size: 1.1rem; }
+.update-time { font-size: 0.7rem; color: var(--text-muted); }
+.queue-stats { display: flex; gap: 0.75rem; font-size: 0.75rem; color: var(--text-muted); }
+.text-red { color: var(--urgent-red); font-weight: 600; }
+
+.patient-list { flex: 1; overflow-y: auto; }
+
+.patient-card {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.patient-card:hover, .patient-card.active {
+  background: #f1f5f9;
+}
+
+.p-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.p-card-top h4 { font-size: 0.9rem; font-weight: 600; }
+.p-card-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+.p-card-complaint { font-size: 0.8rem; color: var(--urgent-red); font-weight: 500; margin-top: 6px; }
+.p-card-time { display: flex; gap: 0.75rem; font-size: 0.7rem; color: var(--text-muted); margin-top: 6px; }
+
+/* Urgency Tags */
+.tag-urgency {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.tag-urgency.high { color: #dc2626; border-color: #fca5a5; background: #fef2f2; }
+.tag-urgency.moderate { color: #d97706; border-color: #fde68a; background: #fffbeb; }
+.tag-urgency.low { color: #059669; border-color: #a7f3d0; background: #ecfdf5; }
+
+/* 3. Right Detailed EMR Panel */
+.emr-detail-panel {
+  flex: 1;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.patient-banner {
+  background: var(--bg-banner);
+  color: #fff;
+  padding: 1.25rem 1.5rem;
+}
+
+.banner-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.banner-header h2 { font-size: 1.3rem; }
+.banner-header p { font-size: 0.8rem; opacity: 0.8; margin-top: 2px; }
+
+.vitals-strip {
+  display: flex;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+}
+
+.vital-item { display: flex; flex-direction: column; }
+.v-label { font-size: 0.65rem; opacity: 0.7; font-weight: 700; }
+.v-value { font-size: 1rem; font-weight: 700; }
+
+.detail-content {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.section-block { background: #fff; padding: 1rem 1.25rem; border-radius: 6px; border: 1px solid var(--border-color); }
+.section-title { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+.complaint-tag { color: var(--urgent-red); font-weight: 600; font-size: 0.9rem; }
+.body-text { font-size: 0.85rem; color: #334155; line-height: 1.5; }
+
+.two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.pill-group { display: flex; gap: 0.5rem; }
+.pill { font-size: 0.75rem; padding: 4px 10px; border-radius: 4px; font-weight: 500; }
+.pill.red { background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; }
+
+.med-list p { font-size: 0.85rem; color: #334155; margin-bottom: 0.25rem; }
+
+/* Severity Progress Bars */
+.severity-row { display: grid; grid-template-columns: 140px 1fr 40px; align-items: center; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.8rem; }
+.bar-container { background: #e2e8f0; height: 8px; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--urgent-red); border-radius: 4px; }
+
+/* AI Differential Diagnosis */
+.diag-card { border: 1px solid var(--border-color); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; }
+.diag-card.top { border-left: 4px solid var(--primary-blue); }
+.diag-header { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; }
+.diag-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+/* Footer Action Buttons */
+.action-footer {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-btns { display: flex; gap: 0.75rem; }
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary { background: var(--bg-banner); color: #fff; }
+.btn-secondary { background: #f1f5f9; border: 1px solid var(--border-color); color: var(--text-main); }
+.btn-success { background: var(--low-green); color: #fff; }
