@@ -60,13 +60,24 @@ function closeLoginModal() {
   document.getElementById('loginModal').classList.remove('active');
 }
 
-function handleLogin(event) {
+async function handleLogin(event) {
   event.preventDefault();
-  
-  // Direct user to target app page after successful sign in
-  if (currentRole === 'patient') {
-    window.location.href = 'patient.html';
-  } else if (currentRole === 'doctor') {
-    window.location.href = 'doctor.html';
+  const submitButton = document.getElementById('loginSubmitBtn');
+  submitButton.disabled = true;
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        role: currentRole,
+        username: document.getElementById('usernameInput').value.trim(),
+        password: document.getElementById('passwordInput').value
+      })
+    });
+    if (!response.ok) throw new Error('Login failed');
+    window.location.href = currentRole === 'patient' ? 'patient.html' : 'doctor.html';
+  } catch (error) {
+    alert('Unable to sign in. Please make sure the MedFlow server is running.');
+    submitButton.disabled = false;
   }
 }

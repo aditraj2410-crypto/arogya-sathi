@@ -1,4 +1,5 @@
-let selectedLanguage = "English";const socket = io('http://localhost:3000');
+let selectedLanguage = "English";
+const socket = io();
 let selectedMode = "voice";
 
 function selectLanguage(element, lang) {
@@ -27,7 +28,7 @@ function selectMode(mode) {
   }
 }
 
-function startCaseTaking() {
+async function startCaseTaking() {
   const newPatient = {
     id: "P-" + Math.floor(1000 + Math.random() * 9000),
     name: "Patient " + Math.floor(10 + Math.random() * 90),
@@ -50,7 +51,15 @@ function startCaseTaking() {
     ]
   };
 
-  // Send patient data live over WebSocket to server.js
-  socket.emit('submit_patient_data', newPatient);
-  alert(`Case for ${newPatient.id} submitted live to Doctor Queue!`);
+  try {
+    const response = await fetch('/api/patients', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newPatient)
+    });
+    if (!response.ok) throw new Error('Submission failed');
+    alert(`Case for ${newPatient.id} submitted live to Doctor Queue!`);
+  } catch (error) {
+    alert('Unable to submit the case. Please check the server connection.');
+  }
 }

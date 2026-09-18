@@ -598,15 +598,31 @@
       renderQueue();
       selectPatient(activePatientId);
     });
+
+    function replacePatientQueue(nextPatients) {
+      patientQueue.splice(0, patientQueue.length, ...nextPatients);
+      if (!patientQueue.some((patient) => patient.id === activePatientId)) {
+        activePatientId = patientQueue[0]?.id;
+      }
+      renderQueue();
+      if (activePatientId) selectPatient(activePatientId);
+    }
+
+    fetch('/api/patients')
+      .then((response) => response.json())
+      .then(replacePatientQueue)
+      .catch(() => console.warn('Unable to load the live patient queue.'));
+
+    window.addEventListener('queue_snapshot', (event) => replacePatientQueue(event.detail));
+    window.addEventListener('new_patient_arrived', (event) => {
+      patientQueue.unshift(event.detail);
+      renderQueue();
+      selectPatient(event.detail.id);
+    });
   </script>
 
   <!-- ADD THIS LINE HERE -->
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-
-  <!-- ALSO ADD THIS LINK TO YOUR EXTERNAL JS FILE -->
-  <script src="doctor.js"></script>
-</body>
-</html>
-  </script>
+  <script src="src/backend-sync.js"></script>
 </body>
 </html>
